@@ -10,25 +10,25 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_reg_email"
+        android:id="@+id/et_reg_email"
         android:textSize="25sp"
         android:hint="E-mail"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_reg_felhnev"
+        android:id="@+id/et_reg_felhnev"
         android:textSize="25sp"
         android:hint="Felhasználónév"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_reg_jelszo"
+        android:id="@+id/et_reg_jelszo"
         android:textSize="25sp"
         android:hint="Jelszó"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_reg_teljnev"
+        android:id="@+id/et_reg_teljnev"
         android:textSize="25sp"
         android:hint="Teljes név"/>
     <Button
