@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_reg_email"
         android:textSize="25sp"
+        android:inputType="textEmailAddress"
         android:hint="E-mail"/>
     <EditText
         android:layout_width="match_parent"

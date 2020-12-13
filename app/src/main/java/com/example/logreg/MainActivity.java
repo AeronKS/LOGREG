@@ -13,11 +13,13 @@ public class MainActivity extends AppCompatActivity {
 
     EditText etFelhnev, etJelszo;
     Button btnBej, btnReg;
+    DBhelper adatbazis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         init();
 
@@ -35,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Nincs megadva jelszó!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                //todo ellenőrizni hogy a megadott adatok helyesek e
                 BejValid();
             }
         });
@@ -51,7 +52,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void BejValid() {
+        String felhnev = etFelhnev.getText().toString().trim();
+        String jelszo = etJelszo.getText().toString().trim();
 
+        if (felhnev.isEmpty()) {
+            Toast.makeText(this, "Felhasználónév megadása kötelező!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (jelszo.isEmpty()) {
+            Toast.makeText(this, "Jelszó megadása kötelező!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (adatbazis.felhnevLetezik(felhnev)) {
+            if (adatbazis.jelszoLetezik(jelszo)) {
+                Toast.makeText(this, "Sikeres bejelentkezes!", Toast.LENGTH_SHORT).show();
+
+                Intent bejelentkezes = new Intent(MainActivity.this, LoggedInActivity.class);
+                startActivity(bejelentkezes);
+                finish();
+            } else {
+                Toast.makeText(this, "Hibás felhasználónév vagy jelszó!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Hibás felhasználónév vagy jelszó!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void init() {
@@ -59,5 +84,7 @@ public class MainActivity extends AppCompatActivity {
         etJelszo = findViewById(R.id.et_jelszo);
         btnBej = findViewById(R.id.btn_bejelentkezes);
         btnReg = findViewById(R.id.btn_regisztracio);
+
+        adatbazis = new DBhelper(MainActivity.this);
     }
 }

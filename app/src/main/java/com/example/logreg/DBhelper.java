@@ -56,4 +56,16 @@ public class DBhelper extends SQLiteOpenHelper {
         return db.query(FELHASZNALO_TABLE, new String[]{COL_ID, COL_EMAIL, COL_FELHNEV, COL_JELSZO, COL_TELJESNEV}, null, null,
                 null, null ,null);
     }
+
+    public boolean felhnevLetezik(String felhnev) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor result = db.rawQuery("SELECT * FROM felhasznalo WHERE felhnev = ?", new String[]{felhnev});
+        return result.getCount() == 1;
+    }
+
+    public boolean jelszoLetezik(String jelszo) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor result = db.rawQuery("SELECT * FROM felhasznalo WHERE jelszo = ?", new String[]{jelszo});
+        return result.getCount() == 1;
+    }
 }
